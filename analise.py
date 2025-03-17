@@ -40,6 +40,7 @@ if Path(excel_path).exists():
         sns.heatmap(correlation_matrix, annot=True, cmap="coolwarm", fmt=".2f", linewidths=0.5)
         plt.title("Matriz de Correlação")
         st.pyplot(plt)
+        plt.clf()  # Limpa a figura para o próximo gráfico
 
         st.subheader("2. Distribuição Normal")
         var = col_numericas[0]
@@ -52,6 +53,7 @@ if Path(excel_path).exists():
         plt.plot(x, p_normal, 'k', linewidth=2)
         plt.title(f"Distribuição Normal de {var}")
         st.pyplot(plt)
+        plt.clf()
 
         st.subheader("3. Distribuição Poisson")
         lambda_poisson = df[var].mean()
@@ -60,12 +62,14 @@ if Path(excel_path).exists():
         plt.bar(np.arange(0, 15), p_poisson, color='orange')
         plt.title(f"Distribuição Poisson de {var}")
         st.pyplot(plt)
+        plt.clf()
 
         st.subheader("4. Análise de Outliers")
         plt.figure(figsize=(10, 6))
         sns.boxplot(data=df[col_numericas])
         plt.title("Análise de Outliers")
         st.pyplot(plt)
+        plt.clf()
 
     else:
         st.warning("Não há colunas numéricas suficientes para análise.")
